@@ -1,5 +1,5 @@
 from datetime import date
-
+from django.urls import reverse
 from django.db import models
 
 
@@ -57,7 +57,7 @@ class Movie(models.Model):
     directors = models.ManyToManyField(Actor, verbose_name="режиссер", related_name="film_director")
     actors = models.ManyToManyField(Actor, verbose_name="Актеры", related_name="film_actor")
     genres = models.ManyToManyField(Genre, verbose_name="Жанры")
-    world_premiere = models.DateField("Примьера в мире", default=date.today)
+    world_premiere = models.DateField("Премьера в мире", default=date.today)
     budget = models.PositiveIntegerField(
         "Сборы в США", default=0, help_text="Указывать сумму в долларах"
     )
@@ -72,6 +72,15 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("movie_detail", kwargs={"slug": self.url})
+    
+
+    @property
+    def get_total_sum(self):
+        total_result = self.budget + self.fess_in_world
+        return total_result
 
     class Meta:
         verbose_name = "Фильм"
