@@ -382,6 +382,8 @@ li > a:only-child:after {
 
 /*--/banner --*/
 
+
+
 .main-banner {
     background: url(../images/banner.jpg)no-repeat center;
     -webkit-background-size: cover;
@@ -402,6 +404,12 @@ li > a:only-child:after {
     background-size: cover;
     position: relative;
     min-height: 20em;
+}
+
+.bg1 {
+    background-color: rgba(0,0,0,0);
+    margin-top: 0;
+    background-image:url("../../bundles/single-post-pic2.jpg")
 }
 
 /*-- place holder --*/
@@ -1560,3 +1568,6 @@ a.move-top span {
 @media(max-width:320px) {}
 
 /*--//responsive--*/
+
+
+
