@@ -82,6 +82,11 @@ class Movie(models.Model):
         total_result = self.budget + self.fess_in_world
         return total_result
 
+
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
+
+
     class Meta:
         verbose_name = "Фильм"
         verbose_name_plural = "Фильмы"

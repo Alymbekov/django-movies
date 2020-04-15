@@ -31,6 +31,8 @@ class AddReview(View):
         form = ReviewForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
             form.movie_id = pk 
             form.save()
         return redirect(reverse_lazy("movie_detail", kwargs={"slug": movie.url}))
