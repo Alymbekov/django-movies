@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-
+from django.views.generic.base import View
+from .forms import ReviewForm
 
 from .models import Movie, Genre
 
@@ -21,3 +24,13 @@ class MovieDetailView(DetailView):
         context['genres'] = Genre.objects.all()
         return context
 
+class AddReview(View):
+    """Отзывы"""
+    def post(self, request, pk):
+        movie = Movie.objects.get(id=pk)
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.movie_id = pk 
+            form.save()
+        return redirect(reverse_lazy("movie_detail", kwargs={"slug": movie.url}))

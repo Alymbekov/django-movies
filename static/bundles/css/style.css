@@ -406,6 +406,12 @@ li > a:only-child:after {
     min-height: 20em;
 }
 
+.img-movie-shots {
+    max-width: 250px;
+    height: auto;
+}
+
+
 .bg1 {
     background-color: rgba(0,0,0,0);
     margin-top: 0;
