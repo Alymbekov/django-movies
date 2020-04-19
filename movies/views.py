@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from .forms import ReviewForm
 
-from .models import Movie, Genre
+from .models import Movie, Genre, Actor
 
 
 class MoviesView(ListView):
@@ -36,3 +36,10 @@ class AddReview(View):
             form.movie_id = pk 
             form.save()
         return redirect(reverse_lazy("movie_detail", kwargs={"slug": movie.url}))
+
+
+class ActorView(DetailView):
+    """Вывод инфы о актере"""
+    model = Actor
+    template_name = "movies/actor.html"
+    slug_field = "name"
