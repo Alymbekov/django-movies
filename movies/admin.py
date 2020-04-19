@@ -131,7 +131,7 @@ class ActorAdmin(admin.ModelAdmin):
 @admin.register(Raiting)
 class RatingAdmin(admin.ModelAdmin):
     """Рейтинг"""
-    list_display = ("ip", "movie")
+    list_display = ("ip", "movie", 'star')
 
 
 @admin.register(MovieShots)
@@ -150,6 +150,7 @@ class MovieShotsAdmin(admin.ModelAdmin):
 
 # for model in models:
 #     admin.site.register(model)
+admin.site.register(RatingStar)
 
 admin.site.site_title = "Django Movies"
 admin.site.site_header = "Django Movies"
